@@ -30,37 +30,11 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
             throw new RuntimeException("Invalid employeeId: " + id);
         }
 
-        // Employee e = calculateReports(employee);
-        // int numberOfReports = calculateNumberOfReports(employee);
-
-        //ReportingStructure reportingStructure = new ReportingStructure(e, numberOfReports);
-
         ReportingStructure reportingStructure = calculateReports(employee);
         if (reportingStructure == null) reportingStructure = new ReportingStructure(employee, 0);
 
         return reportingStructure;
     }
-
-    // private int calculateNumberOfReports(Employee reportee) { //post order traversal
-    //     int numNodes = 0;
-    //     if (reportee == null || reportee.getDirectReports() == null) return 0;
-    //     for (Employee reporter : reportee.getDirectReports()) {
-    //         numNodes += 1 + calculateNumberOfReports(reporter);
-    //     }
-    //     return numNodes;
-    // }
-
-    // private Employee calculateReports(Employee reportee) { //post order traversal
-    //     ArrayList<Employee> directReporterList = new ArrayList();
-    //     if (reportee == null || reportee.getDirectReports() == null) return null;
-    //     for (Employee reporter : reportee.getDirectReports()) {
-    //         reporter = employeeRepository.findByEmployeeId(reporter.getEmployeeId());
-    //         directReporterList.add(reporter);
-    //         calculateReports(reporter);
-    //     }
-    //     reportee.setDirectReports(directReporterList);
-    //     return reportee;
-    // }
 
     private ReportingStructure calculateReports(Employee reportee) {
         ArrayList<Employee> directReporterList = new ArrayList();
